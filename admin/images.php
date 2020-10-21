@@ -34,7 +34,20 @@ if (!isset($_SESSION['username'])) {
           </a>
         </div>
       </div>
-      
+
+      <div class="image-form">
+        <form action="imageupload.php" method="POST" enctype="multipart/form-data">
+          <div>
+            <input type="file" name="image">
+          </div>
+          <div>
+           <textarea name="text" cols="40" rows="4"placeholder="Brief description of image..."></textarea>
+          </div>
+          <div>
+            <input type="submit" name="upload" value="Upload Image">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </body>
