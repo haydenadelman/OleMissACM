@@ -1,5 +1,9 @@
 <?php
+
 session_start();
+if (!isset($_SESSION['username'])) {
+  header("Location:../login.php");
+}
 include 'connection.php';
 
 // Checked if register button is pressed 
@@ -14,13 +18,13 @@ if(isset($_POST['register'])){
    // Check fields are empty or not
    if($username == '' || $password== '' || $repassword == '' || $role == ''){
      $isValid = false;
-     header("Location:register.php?error=Please fill out all fields to continue");
+     header("Location:../users.php?error=Please fill out all fields to continue");
    }
 
    // Check if confirm password matching or not
    if($isValid && ($password != $repassword) ){
      $isValid = false;
-     header("Location:register.php?error=Passwords do not match");
+     header("Location:../users.php?error=Passwords do not match");
    }
 
    if($isValid){
@@ -33,7 +37,7 @@ if(isset($_POST['register'])){
      $stmt->close();
      if($result->num_rows > 0){
        $isValid = false;
-       header("Location:register.php?error=That email is already registered in our system");
+       header("Location:../users.php?error=That email is already registered in our system");
      }
 
    }
@@ -46,7 +50,7 @@ if(isset($_POST['register'])){
      $stmt->execute();
      $stmt->close();
 
-     header("Location:register.php?success=Account successfully created!");
+     header("Location:../users.php?success=Account successfully created!");
    }
 }
 ?>

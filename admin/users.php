@@ -38,30 +38,156 @@ include 'connection.php';
           </a>
         </div>
       </div>
+      <?php if (isset($_REQUEST['error'])) { ?>
+        <!-- Error Alerts-->
+        <div class="text-center">
+          <span class="alert alert-danger"><?php echo $_REQUEST['error']; ?></span>
+        </div>
+      <?php } ?>
+      <?php if (isset($_REQUEST['success'])) { ?>
+        <!-- Error Alerts-->
+        <div class="text-center">
+          <span class="alert alert-success"><?php echo $_REQUEST['success']; ?></span>
+        </div>
+      <?php } ?>
       <!-- User account table-->
       <?php
-      $sql = "SELECT ID, username, role FROM users";
-      $result = $conn->query($sql);
+      $query = "SELECT * FROM users";
+      $query_run = mysqli_query($conn, $query);
 
-      if ($result->num_rows > 0) {
-        echo "<table><tr><th>ID</th><th>Name</th><th>Role</th></tr>";
-        //Output data of each row
-        while ($row = $result->fetch_assoc()) {
-          echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["username"] . "</td><td>" . $row["role"] . "</td></tr>";
-        }
-        echo "</table>";
-      } else {
-        echo "0 results";
-      }
-      $conn->close();
       ?>
-      <hr>
-      <div class="users">
-        <a href="./register.php">
-          Add new user
-        </a>
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          if (mysqli_num_rows($query_run) > 0) {
+            while ($row = mysqli_fetch_assoc($query_run)) {
+          ?>
+              <tr>
+                <td><?php echo $row['ID']; ?></td>
+                <td><?php echo $row['username']; ?></td>
+                <td><?php echo $row['role']; ?></td>
+                <td>
+                  <!-- EDIT user button to go to form-->
+                  <form action="forms/userform.php" method="POST">
+                    <input type="hidden" name="edit_id" value="<?php echo $row['ID']; ?>">
+                    <button type="button" name="btn btn-primary" data-toggle="modal" data-target="#editUserModal" class="btn btn-success">EDIT</button>
+                  </form>
+                </td>
+                <td>
+                  <button type="submit" class="btn btn-danger">DELETE</button>
+                </td>
+              </tr>
+          <?php
+            }
+          } else {
+            echo "No records found";
+          }
+          ?>
+        </tbody>
+      </table>
+      
+      <!-- Register Modal -->
+      <div class="registermodal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
+          Register User
+        </button>
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new user!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Register-->
+                <div id="register">
+                  <form class="user" name="form-register" action="forms/registerform.php" method="POST">
+                    <div class="form-group">
+                      <input type="email" name="username" id="username" aria-describedby="emailHelp" placeholder="New Email Address...">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="repassword" id="repassword" placeholder="Re-Enter Password">
+                    </div>
+                    <div class="form-group">
+                      <input list="role" class="form-control form-control-user" name="role" placeholder="Choose account role">
+                      <datalist id='role'>
+                        <option value="admin"></option>
+                        <option value="user"></option>
+                      </datalist>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" name="register" class="btn btn-primary">Register</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit User Modal -->
+      <div class="editmodal">
+        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel">Edit this user</h5>
+                <h5 class="modal-title" value="<?php echo $row['username']?>"></h7>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Edit User-->
+                <div id="editUser">
+                  <form class="user" name="form-editUser" action="userform.php" method="POST">
+                    <div class="form-group">
+                      <input type="email" name="username" id="username" aria-describedby="emailHelp" placeholder="Change email eddress...">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" id="password" placeholder="Change password">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="repassword" id="repassword" placeholder="Re-Enter new password">
+                    </div>
+                    <div class="form-group">
+                      <input list="role" class="form-control form-control-user" name="role" placeholder="Change account role">
+                      <datalist id='role'>
+                        <option value="admin"></option>
+                        <option value="user"></option>
+                      </datalist>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="edit_user">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <hr>
+      <!-- Footer -->
+
+      
     </div>
   </div>
 </body>
