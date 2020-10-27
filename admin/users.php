@@ -45,7 +45,7 @@ include 'connection.php';
         </div>
       <?php } ?>
       <?php if (isset($_REQUEST['success'])) { ?>
-        <!-- Error Alerts-->
+        <!-- Success Alerts-->
         <div class="text-center">
           <span class="alert alert-success"><?php echo $_REQUEST['success']; ?></span>
         </div>
@@ -79,7 +79,7 @@ include 'connection.php';
                   <!-- EDIT user button to go to form-->
                   <form action="forms/userform.php" method="POST">
                     <input type="hidden" name="edit_id" value="<?php echo $row['ID']; ?>">
-                    <button type="button" name="btn btn-primary" data-toggle="modal" data-target="#editUserModal" class="btn btn-success">EDIT</button>
+                    <button type="submit" name="forms/userform.php" data-toggle="modal" data-target="#editUserModal" class="btn btn-success">EDIT</button>
                   </form>
                 </td>
                 <td>
@@ -156,7 +156,8 @@ include 'connection.php';
               <div class="modal-body">
                 <!-- Edit User-->
                 <div id="editUser">
-                  <form class="user" name="form-editUser" action="userform.php" method="POST">
+
+                  <form class="user" name="form-editUser" action="forms/userform.php" method="POST">
                     <div class="form-group">
                       <input type="email" name="username" id="username" aria-describedby="emailHelp" placeholder="Change email eddress...">
                     </div>

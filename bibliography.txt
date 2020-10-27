@@ -1,3 +1,5 @@
 https://fonts.google.com/specimen/Roboto+Condensed?sidebar.open=true&selection.family=Roboto+Condensed:wght@300
 
 https://www.webslesson.info/2017/06/ajax-image-add-edit-remove-from-mysql-database-using-php.html
+
+https://www.w3schools.com/php/php_mysql_connect.asp
