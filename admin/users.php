@@ -76,10 +76,10 @@ include 'connection.php';
                 <td><?php echo $row['username']; ?></td>
                 <td><?php echo $row['role']; ?></td>
                 <td>
-                  <!-- EDIT user button to go to form-->
-                  <form action="forms/userform.php" method="POST">
+                  <!-- EDIT user button to go to page-->
+                  <form action="edituser.php" method="POST">
                     <input type="hidden" name="edit_id" value="<?php echo $row['ID']; ?>">
-                    <button type="submit" name="forms/userform.php" data-toggle="modal" data-target="#editUserModal" class="btn btn-success">EDIT</button>
+                    <button type="submit" name="edit_user" class="btn btn-info">EDIT</button>
                   </form>
                 </td>
                 <td>
@@ -135,51 +135,6 @@ include 'connection.php';
                     </div>
                   </form>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Edit User Modal -->
-      <div class="editmodal">
-        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit this user</h5>
-                <h5 class="modal-title" value="<?php echo $row['username']?>"></h7>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <!-- Edit User-->
-                <div id="editUser">
-
-                  <form class="user" name="form-editUser" action="forms/userform.php" method="POST">
-                    <div class="form-group">
-                      <input type="email" name="username" id="username" aria-describedby="emailHelp" placeholder="Change email eddress...">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name="password" id="password" placeholder="Change password">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name="repassword" id="repassword" placeholder="Re-Enter new password">
-                    </div>
-                    <div class="form-group">
-                      <input list="role" class="form-control form-control-user" name="role" placeholder="Change account role">
-                      <datalist id='role'>
-                        <option value="admin"></option>
-                        <option value="user"></option>
-                      </datalist>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="edit_user">Save changes</button>
               </div>
             </div>
           </div>
