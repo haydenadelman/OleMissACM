@@ -74,7 +74,7 @@ include 'connection.php';
               <input type="password" name="edit_password" value="<?php echo $row['password'] ?>" id="password" placeholder="Password">
             </div>
             <div class="form-group">
-              <input type="password" name="edit_repassword" id="repassword" placeholder="Re-Enter Password">
+              <input type="password" name="edit_repassword" value="<?php echo $row['password'] ?>" id="repassword" placeholder="Re-Enter Password">
             </div>
             <div class="form-group">
               <h6> Current Role </h6>

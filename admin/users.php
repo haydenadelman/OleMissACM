@@ -83,7 +83,32 @@ include 'connection.php';
                   </form>
                 </td>
                 <td>
-                  <button type="submit" class="btn btn-danger">DELETE</button>
+                  <form action="forms/userform.php" method="POST">
+                    <input type="text" name="delete_id" value="<?php echo $row['ID']; ?>">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUserModal">DELETE</button>
+
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to delete this user?
+                          </div>
+                          <input type="text" name="delete_id" value="<?php echo $row['ID']; ?>">
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" name="delete_user" class="btn btn-danger">DELETE</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </td>
               </tr>
           <?php
@@ -94,7 +119,7 @@ include 'connection.php';
           ?>
         </tbody>
       </table>
-      
+
       <!-- Register Modal -->
       <div class="registermodal">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
@@ -143,7 +168,7 @@ include 'connection.php';
       <hr>
       <!-- Footer -->
 
-      
+
     </div>
   </div>
 </body>
