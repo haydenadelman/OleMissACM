@@ -2,14 +2,11 @@
 
 session_start();
 if (!isset($_SESSION['username'])) {
-  header("Location:login.php");
-} elseif ($_SESSION['role'] != "admin") {
-  header("Location:index.php");
-}
-include 'connection.php';
+  header("Location:../login.php");
+} 
 
+include '../connection.php';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +14,9 @@ include 'connection.php';
 <head>
   <title>Admin Dashboard</title>
   <meta charset="utf-8">
-  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="../css/style.css" rel="stylesheet" type="text/css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-  <script src="js/adminmain.js"></script>
+  <script src="../js/adminmain.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
 </head>
@@ -27,14 +24,14 @@ include 'connection.php';
 <body>
   <div class="wrapper">
     <?php
-    include 'includes/navbar.php';
+    include 'navbar.php';
     ?>
 
     <div class="main_content">
-      <div class="header">Users
+      <div class="header">Edit Events page
         <div class="logout">
-          <a href="logout.php">
-            Logout
+          <a href="../logout.php">
+          Logout
           </a>
         </div>
       </div>
@@ -52,7 +49,7 @@ include 'connection.php';
       <?php } ?>
       <!-- User account table-->
       <?php
-      $query = "SELECT * FROM users";
+      $query = "SELECT * FROM events";
       $query_run = mysqli_query($conn, $query);
 
       ?>
@@ -60,8 +57,12 @@ include 'connection.php';
         <thead>
           <tr>
             <th>ID</th>
-            <th>Username</th>
-            <th>Role</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Event Image</th>
             <th>EDIT</th>
             <th>DELETE</th>
           </tr>
@@ -72,19 +73,23 @@ include 'connection.php';
             while ($row = mysqli_fetch_assoc($query_run)) {
           ?>
               <tr>
-                <td><?php echo $row['ID']; ?></td>
-                <td><?php echo $row['username']; ?></td>
-                <td><?php echo $row['role']; ?></td>
+                <td><?php echo $row['eventID']; ?></td>
+                <td><?php echo $row['title']; ?></td>
+                <td><?php echo $row['date']; ?></td>
+                <td><?php echo $row['time']; ?></td>
+                <td><?php echo $row['location']; ?></td>
+                <td><?php echo $row['description']; ?></td>
+                <td><?php echo $row['eventImage']; ?></td>
                 <td>
                   <!-- EDIT user button to go to page-->
                   <form action="edituser.php" method="POST">
-                    <input type="hidden" name="edit_id" value="<?php echo $row['ID']; ?>">
+                    <input type="hidden" name="edit_eventid" value="<?php echo $row['eventID']; ?>">
                     <button type="submit" name="edit_user" class="btn btn-info">EDIT</button>
                   </form>
                 </td>
                 <td>
                   <form action="forms/userform.php" method="POST">
-                    <input type="hidden" name="delete_id" value="<?php echo $row['ID']; ?>">
+                    <input type="hidden" name="delete_id" value="<?php echo $row['eventID']; ?>">
                     <button type="submit" name="delete_user" class="btn btn-danger">DELETE</button>
                   </form>
                 </td>
@@ -99,11 +104,11 @@ include 'connection.php';
       </table>
 
       <!-- Register Modal -->
-      <div class="registermodal">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
-          Register User
+      <div class="addEventmodal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEventModal">
+          Add Event
         </button>
-        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -145,14 +150,13 @@ include 'connection.php';
       </div>
       <hr>
       <!-- Footer -->
-
-
+      
     </div>
   </div>
 </body>
 
 <?php
-include './includes/scripts.php';
+include '../includes/scripts.php';
 
 ?>
 

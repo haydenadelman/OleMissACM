@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
 } elseif ($_SESSION['role'] != "admin") {
   header("Location:index.php");
 }
+include 'connection.php';
 
 ?>
 
@@ -32,16 +33,32 @@ if (!isset($_SESSION['username'])) {
       <div class="header">Welcome to Admin Dashboard!
         <div class="logout">
           <a href="logout.php">
-          Logout
+            Logout
           </a>
         </div>
       </div>
+      <!-- Members Card-->
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Club Member Count</h5>
+          <p class="card-text">
+            <?php
+            $query = "SELECT memberID FROM members ORDER BY memberID";
+            $query_run = mysqli_query($conn, $query);
+
+            $row = mysqli_num_rows($query_run);
+
+            echo '<h4>'.$row.'</h4>';
+            ?>
+          </p>
+          <a href="members.php" class="card-link">Go to members</a>
+        </div>
+      </div>
       <div class="users">
-        <a href="users.php">
+        <a class="btn btn-primary" href="users.php">
           View/Edit users
         </a>
       </div>
-      <hr>
     </div>
   </div>
 </body>

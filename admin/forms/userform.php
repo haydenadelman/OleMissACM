@@ -31,22 +31,6 @@ if(isset($_POST['update_user'])) {
      $isValid = false;
      header("Location:../users.php?error=Passwords do not match");
    }
-   /*
-   if($isValid){
-
-     // Check if Email-ID already exists
-     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-     $stmt->bind_param("s", $username);
-     $stmt->execute();
-     $result = $stmt->get_result();
-     $stmt->close();
-     if($result->num_rows > 0){
-       $isValid = false;
-       header("Location:../edituser.php?error=That email is already registered in our system");
-     }
-
-   }
-   */
 
    // Update records
    if($isValid){
@@ -59,11 +43,11 @@ if(isset($_POST['update_user'])) {
 
 if(isset($_POST['delete_user'])) {
   $id= $_POST['delete_id'];
-
   $query = "DELETE FROM users WHERE ID='$id' ";
   $query_run = mysqli_query($conn, $query);
 
   header("Location:../users.php?success=Account successfully deleted!");
 }
 
+?>
 
