@@ -1,9 +1,12 @@
 * {
   box-sizing: border-box;
+  font-family: 'Roboto Condensed';
+  
 }
 body {
   margin: 0;
   padding: 0;
+  
 }
 
 .navbar {
@@ -12,6 +15,7 @@ body {
   align-items: center;
   background-color: #5D5C61;
   color: #fff;
+
 }
 
 .logo{
@@ -58,7 +62,7 @@ body {
   border-radius: 10px;
 }
 
-@media(max-width: 600px) {
+@media(max-width: 700px) {
   .toggle-button {
     display: flex;
   }

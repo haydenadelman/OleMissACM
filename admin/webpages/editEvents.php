@@ -81,16 +81,16 @@ include '../connection.php';
                 <td><?php echo $row['description']; ?></td>
                 <td><?php echo $row['eventImage']; ?></td>
                 <td>
-                  <!-- EDIT user button to go to page-->
-                  <form action="edituser.php" method="POST">
+                  <!-- EDIT event button to go to page-->
+                  <form action="../editwebpages/editSpecEvent.php" method="POST">
                     <input type="hidden" name="edit_eventid" value="<?php echo $row['eventID']; ?>">
-                    <button type="submit" name="edit_user" class="btn btn-info">EDIT</button>
+                    <button type="submit" name="edit_event" class="btn btn-info">EDIT</button>
                   </form>
                 </td>
                 <td>
-                  <form action="forms/userform.php" method="POST">
+                  <form action="../forms/eventform.php" method="POST">
                     <input type="hidden" name="delete_id" value="<?php echo $row['eventID']; ?>">
-                    <button type="submit" name="delete_user" class="btn btn-danger">DELETE</button>
+                    <button type="submit" name="delete_event" class="btn btn-danger">DELETE</button>
                   </form>
                 </td>
               </tr>
@@ -103,7 +103,7 @@ include '../connection.php';
         </tbody>
       </table>
 
-      <!-- Register Modal -->
+      <!-- Add Event Modal -->
       <div class="addEventmodal">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEventModal">
           Add Event
@@ -112,34 +112,40 @@ include '../connection.php';
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add new user!</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add new event!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <!-- Register-->
-                <div id="register">
-                  <form class="user" name="form-register" action="forms/registerform.php" method="POST">
+                <!-- Add Event-->
+                <div id="addEvent">
+                  <form class="user" name="form-addEvent" action="../forms/eventform.php" method="POST">
                     <div class="form-group">
-                      <input type="email" name="username" id="username" aria-describedby="emailHelp" placeholder="New Email Address...">
+                      <input type="text" name="title" id="title" placeholder="Event title...">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" placeholder="Password">
+                      <input type="date" name="date" id="date" placeholder="Enter event date">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="repassword" id="repassword" placeholder="Re-Enter Password">
+                      <input type="time" name="time" id="time" placeholder="Enter event start time">
                     </div>
                     <div class="form-group">
-                      <input list="role" class="form-control form-control-user" name="role" placeholder="Choose account role">
-                      <datalist id='role'>
-                        <option value="admin"></option>
-                        <option value="user"></option>
-                      </datalist>
+                      <input type="text" name="location" id="location" placeholder="Enter event location">
                     </div>
+                    <div class="form-group">
+                      <textarea name ="description" id="description" rows="6" cols="40" placeholder="Describe event"></textarea>
+                    </div>
+                    <hr>
+                    <!-- Image input (not implemented)
+                    <div class="form-group">
+                      <h6>Add event image?</h6>
+                      <input type="file" name="eventImage" id="eventImage">
+                    </div>
+                    -->
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" name="register" class="btn btn-primary">Register</button>
+                      <button type="submit" name="addEvent" class="btn btn-primary">Add Event</button>
                     </div>
                   </form>
                 </div>
