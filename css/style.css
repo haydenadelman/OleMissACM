@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap');
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto Condensed';
   
+}
+
+.main-container{
+  position: relative;
 }
 body {
   margin: 0;
@@ -20,11 +26,14 @@ body {
 
 .logo{
   font-size: 1.5rem;
-  margin: .5rem;
+  margin: 1rem;
 }
 .logo a{
   text-decoration: none;
-  color: #fff;
+  color: #ff0202;
+  font-size: 35px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
 .links ul {
@@ -92,30 +101,91 @@ body {
   } 
 }
 
-/*
-.banner-area {
-  width: 100%;
-  height: 300px;
-  position: fixed;
-  top: 100px;
-  background-image: url(../imgs/home-bg.jpg);
-  display: block;
-  background-size: cover;
-  background-position: center center;
-}
-.banner-area h2 {
-  padding-top:8%;
-  font-size: 70px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  text-transform: uppercase;
+p {
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 20px;
   color: #fff;
 }
-.content-area{
+
+.banner-image{
+  background-image: url(../imgs/home-bg.jpg);
+  background-size: cover;
   width: 100%;
-  position: relative;
-  top: 450px;
-  background: #ddd;
-  height: 1500px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
-*/
+.banner-content {
+  text-align: center;
+  color: #FFF;
+  
+}
+.banner-content h1 {
+  
+  line-height: 38px;
+  margin-bottom: 15px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 90px;
+}
+.banner-content h1 span{
+  color: #fff;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 24px;
+}
+
+p{
+  color: #000;
+  font-size: 20px;
+}
+
+.wrapper {
+  padding: 5% 10%;
+  text-align: center;
+
+}
+
+h2.title{
+  margin: bottom;
+  color: #444444;
+  text-transform: uppercase;
+  font-size: 38px;
+  word-spacing: 5px;
+
+}
+
+.btn a{
+  display: block;
+  width: 180px;
+  height: 25px;
+  border: 2px solid #ff0202;
+  text-decoration: none;
+  color: #ff0202;
+  margin: 25px auto 0;
+  text-align: center;
+}
+
+/*Gallery*/
+
+.gallery{
+  background-color: #ff0202;
+  padding: 20px;
+  
+  align-items: center;
+}
+
+.gallery_item {
+  float: left;
+  padding: 0px;
+  margin-top: 15px;
+	margin-left: 20px;
+	margin-bottom: 0px;
+  border: 3px #ff0202;
+  align-items: center;
+
+}
+
+
 

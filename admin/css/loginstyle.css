@@ -13,7 +13,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-  background: #5D5C61;
+  background: #fff;
+  padding: 15px;
 
 }
 

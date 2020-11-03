@@ -1,23 +1,62 @@
 <?php
 include 'includes/head.php';
+include 'admin/connection.php';
 ?>
 
 <body>
 
-  <?php
-  include 'includes/navbar.php';
-  ?>
+  <div class="main-container">
+    <?php
+    include 'includes/navbar.php';
+    ?>
 
+    <div class="banner-image">
+      <div class="banner-content">
+        <h1>OleMissACM <br />
+          <span>Advancing Computing as a Science & Profession</span>
+        </h1>
 
-
-  <div class="banner-area">
-    <h2>this is banner</h2>
-  </div>
-  <div class="content-area">
-    <div class="wrapper">
-      <h2>Content Area</h2>
-      <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+      </div>
     </div>
+    <div class="content-area">
+      <div class="wrapper">
+        <h2 class="title">Our Mission</h2>
+        <p>ACM, the world's largest educational and scientific computing society, delivers resources that advance computing as a science and a profession.</p>
+        <div class="btn">
+          <a href="about.php">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="events">
+      <div class="wrapper">
+        <h2 class="title">Next event!</h2>
+        <?php
+        $query = "SELECT * FROM events LIMIT 1";
+        $query_run = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($query_run) > 0) {
+          foreach ($query_run as $row) {
+        ?>
+
+            <h5 class="card-title"> <?php echo $row['title']; ?> </h5>
+            <h6> Date: <?php echo $row['date']; ?> </h6>
+            <h6> Time: <?php echo $row['time']; ?> </h6>
+            <h6> Location: <?php echo $row['location']; ?> </h6>
+            <p class="card-task"> <?php echo $row['description']; ?> </p>
+        <?php
+
+          }
+        } else {
+          echo "no records found";
+        }
+
+        ?>
+
+
+      </div>
+    </div>
+
   </div>
 
 
