@@ -18,9 +18,7 @@
         <span><i class="fa fa-clipboard"></i></span>
         <span>Edit Website</span>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="webpages/editHome.php">Home</a>
           <a class="dropdown-item" href="webpages/editEvents.php">Events</a>
-          <a class="dropdown-item" href="webpages/editGallery.php">Gallery</a>
           <a class="dropdown-item" href="webpages/editContact.php">Contact Us</a>
         </div>
       </a>
@@ -28,7 +26,7 @@
     <li>
       <a href="images.php">
         <span><i class="fa fa-image"></i></span>
-        <span>Images</span>
+        <span>Gallery Images</span>
       </a>
     </li>
     <li>

@@ -1,6 +1,8 @@
 <?php
 include 'includes/head.php';
 include 'includes/navbar.php';
+
+include 'admin/connection.php';
 ?>
 
 <body>
@@ -10,27 +12,29 @@ include 'includes/navbar.php';
     <p>Photos taken from past events and meetings!</p>
 
   </div>
-  
-  <div class="gallery" id="gallery">
-    <div class="gallery_item">
-      <img src="imgs/gallery1.jpg" class="format" height="200" width="250" alt="Gallery_image">
-      <h3>ACM Project Development</h3>
-    </div>
-    <div class="gallery_item">
-      <img src="imgs/gallery2.jpg" class="format" height="200" width="250" alt="Gallery_image">
-      <h3>VR Development</h3>
-    </div>
-    <div class="gallery_item">
-      <img src="imgs/gallery3.jpg" class="format" height="200" width="250" alt="Gallery_image">
-      <h3>ACM Fall Meeting</h3>
-    </div>
-    <div class="gallery_item">
-      <img src="imgs/gallery4.jpg" class="format" height="200" width="250" alt="Gallery_image">
-      <h3>ACM LAN party!</h3>
-    </div>
-  </div>
 
-  
+  <!-- Gallery -->
+  <div class="gallery" id="gallery">
+    <?php
+    $query = "SELECT * FROM images";
+    $query_run = mysqli_query($conn, $query);
+    if (mysqli_num_rows($query_run) > 0) {
+      while ($row = mysqli_fetch_assoc($query_run)) {
+        $imageURL = 'admin/uploads/' . $row["imgName"];
+
+    ?>
+    <!-- Loop to get gallery images from database-->
+    <div class="gallery_item">
+      <img src="<?php echo $imageURL; ?>" class="format" height="200" width="250" alt="Gallery_image">
+      <h3><?php echo $row['description']; ?></h3>
+    </div>
+    <?php
+      }
+    } else {
+      echo "No records found";
+    }
+    ?>
+  </div>
 
 </body>
 

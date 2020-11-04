@@ -13,7 +13,6 @@ if (isset($_POST['addContact'])) {
   $image = $_FILES["image"]['imageName'];
 
   if (file_exists("../upload/" . $_FILES["image"]["imageName"])) {
-    $store = $_FILES["image"]["imageName"];
     header('Location: ../webpages/editContact.php?error=Image Already Exists');
   } 
   else {
@@ -21,7 +20,7 @@ if (isset($_POST['addContact'])) {
     $query_run = mysqli_query($conn, $query);
 
     if ($query_run) {
-      move_uploaded_file($_FILES["image"]["tmp_name"], "../upload/" . $_FILES['image']['imageName']);
+      move_uploaded_file($_FILES["image"]["tmp_name"], "../upload/".$_FILES['image']['imageName']);
       header('Location: ../webpages/editContact.php?success=Contact Added');
     } else {
       header('Location: ../webpages/editContact.php?error=Contact Not Added');

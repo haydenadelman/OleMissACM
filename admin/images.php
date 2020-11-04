@@ -5,6 +5,7 @@ if (!isset($_SESSION['username'])) {
   header("Location:login.php");
 }
 
+include 'connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +28,7 @@ if (!isset($_SESSION['username'])) {
     ?>
 
     <div class="main_content">
-      <div class="header">Images
+      <div class="header">Gallery Images
         <div class="logout">
           <a href="logout.php">
             Logout
@@ -35,44 +36,102 @@ if (!isset($_SESSION['username'])) {
         </div>
       </div>
 
-      <div class="container" style="width:900px;">
-        <h3 align="center">View/Edit Images</h3>
-        <br />
-        <div align="right">
-          <button type="button" name="add" id="add" class="btn btn-success">Add</button>
+      <?php if (isset($_REQUEST['error'])) { ?>
+        <!-- Error Alerts-->
+        <div class="text-center">
+          <span class="alert alert-danger"><?php echo $_REQUEST['error']; ?></span>
         </div>
-        <br />
-        <div id="image_data">
+      <?php } ?>
+      <?php if (isset($_REQUEST['success'])) { ?>
+        <!-- Success Alerts-->
+        <div class="text-center">
+          <span class="alert alert-success"><?php echo $_REQUEST['success']; ?></span>
+        </div>
+      <?php } ?>
+      <!-- Image table-->
+      <?php
+      $query = "SELECT * FROM images";
+      $query_run = mysqli_query($conn, $query);
 
+      ?>
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Image Name</th>
+            <th>Description</th>
+            <th>DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          if (mysqli_num_rows($query_run) > 0) {
+            while ($row = mysqli_fetch_assoc($query_run)) { 
+              $imageURL = 'uploads/' . $row["imgName"];
+          ?>
+              <tr>
+                <td><?php echo $row['imageID']; ?></td>
+                <td><img src="<?php echo $imageURL; ?>" alt="" height="60" width="75" /></td>
+                <td><?php echo $row['imgName']; ?></td>
+                <td><?php echo $row['description']; ?></td>
+                <td>
+                  <form action="forms/imageform.php" method="POST">
+                    <input type="hidden" name="delete_id" value="<?php echo $row['imgName']; ?>">
+                    <button type="submit" name="delete_image" class="btn btn-danger">DELETE</button>
+                  </form>
+                </td>
+              </tr>
+          <?php
+            }
+          } else {
+            echo "No records found";
+          }
+          ?>
+        </tbody>
+      </table>
+
+      <!-- Add Image Modal -->
+      <div class="addImagemodal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addImageModal">
+          Add
+        </button>
+        <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Add Image-->
+                <div id="addImage">
+                  <form class="user" name="form-addImage" action="forms/imageform.php" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <input type="file" name="file" id="file">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="description" id="description" placeholder="description">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" name="addImage" class="btn btn-primary">Add</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>  
-</body>
+      <hr>
 
-<div id="imageModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Image</h4>
-      </div>
-      <div class="modal-body">
-        <form id="image_form" method="POST" enctype="multipart/form-data">
-          <p><label>Select Image</label>
-            <input type="file" name="image" id="image" /></p><br />
-          <input type="hidden" name="action" id="action" value="insert" />
-          <input type="hidden" name="image_id" id="image_id" />
-          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info" />
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
-</div>
+</body>
 
 <?php
 include 'includes/scripts.php';
