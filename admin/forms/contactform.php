@@ -10,40 +10,32 @@ if (isset($_POST['addContact'])) {
   $name = $_POST['name'];
   $email = $_POST['email'];
   $position = $_POST['position'];
-  $image = $_FILES["image"]['imageName'];
+  $image = file_get_contents($_FILES["image"]["tmp_name"]);
 
-  if (file_exists("../upload/" . $_FILES["image"]["imageName"])) {
-    header('Location: ../webpages/editContact.php?error=Image Already Exists');
-  } 
-  else {
-    $query = "INSERT INTO contacts ('name','email','position','image') VALUES ('$name','$email','$position','$image')";
-    $query_run = mysqli_query($conn, $query);
+  $insertSQL = "INSERT INTO contacts (name,email,position, image) VALUES (?,?,?,?)";
+  $stmt = $conn->prepare($insertSQL);
+  $stmt->bind_param("ssss", $name, $email, $position, $image);
+  $stmt->execute();
+  $stmt->close();
 
-    if ($query_run) {
-      move_uploaded_file($_FILES["image"]["tmp_name"], "../upload/".$_FILES['image']['imageName']);
-      header('Location: ../webpages/editContact.php?success=Contact Added');
-    } else {
-      header('Location: ../webpages/editContact.php?error=Contact Not Added');
-    }
-  }
+  header("Location:../webpages/editContact.php?success=Contact added");
+
 }
 
-if (isset($_POST['update_event'])) {
-  $id = $_POST['edit_eventid'];
-  $title = $_POST['edit_title'];
-  $date = $_POST['edit_date'];
-  $time = $_POST['edit_time'];
-  $location = $_POST['edit_location'];
-  $description = $_POST['edit_description'];
+if (isset($_POST['update_contact'])) {
+  $id = $_POST['edit_contactID'];
+  $name = $_POST['edit_name'];
+  $email = $_POST['edit_email'];
+  $position = $_POST['edit_position'];
 
   $isValid = true;
 
-  // Update records
+  // Update Contact info
   if ($isValid) {
-    $query = "UPDATE events SET title='$title', date='$date', time='$time', location='$location', description='$description' WHERE eventid='$id' ";
+    $query = "UPDATE contacts SET name='$name', email='$email', position='$position' WHERE contactID='$id' ";
     $query_run = mysqli_query($conn, $query);
 
-    header("Location:../webpages/editEvents.php?success=Account successfully updated!");
+    header("Location:../webpages/editContact.php?success=Account successfully updated!");
   }
 }
 

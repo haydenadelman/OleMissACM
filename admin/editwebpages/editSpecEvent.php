@@ -52,7 +52,7 @@ include '../connection.php';
       <?php
       
       if (isset($_POST['edit_event'])) {
-        $id = $_POST['edit_eventid'];
+        $id = $_POST['edit_eventID'];
         $query = "SELECT * FROM events WHERE eventID='$id' ";
         $query_run = mysqli_query($conn, $query);
 
@@ -61,7 +61,7 @@ include '../connection.php';
           <!-- Edit Event -->
           <form class="user" name="form-editEvent" action="../forms/eventform.php" method="POST">
             <div class="form-group">
-              <input type="hidden" name="edit_eventid" value="<?php echo $row['eventID'] ?>">
+              <input type="hidden" name="edit_eventID" value="<?php echo $row['eventID'] ?>">
             </div>
             <div class="form-group">
               <h6> Title </h6>

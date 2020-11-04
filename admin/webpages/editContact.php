@@ -25,7 +25,7 @@ include '../connection.php';
 <body>
   <div class="wrapper">
     <?php
-    include 'navbar.php';
+    include '../includes/navbar.php';
     ?>
 
     <div class="main_content">
@@ -60,7 +60,7 @@ include '../connection.php';
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Position</th>
+            <th>Club Position</th>
             <th>Image</th>
             <th>EDIT</th>
             <th>DELETE</th>
@@ -76,11 +76,11 @@ include '../connection.php';
                 <td><?php echo $row['name']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['position']; ?></td>
-                <td><?php echo $row['image']; ?></td>
+                <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image'] ).'" height="60" width="75" class="img-thumbnail" />' ?></td>
                 <td>
                   <!-- EDIT event button to go to page-->
                   <form action="../editwebpages/editSpecContact.php" method="POST">
-                    <input type="hidden" name="edit_eventid" value="<?php echo $row['contactID']; ?>">
+                    <input type="hidden" name="edit_contactID" value="<?php echo $row['contactID']; ?>">
                     <button type="submit" name="edit_contact" class="btn btn-info">EDIT</button>
                   </form>
                 </td>
@@ -128,7 +128,7 @@ include '../connection.php';
                       <input type="text" name="position" id="position" placeholder="Enter position" required>
                     </div>
                     <div class="form-group">
-                      <h6>Contact Image:</h6>
+                      <h6>Contact Image: (Max File Size: 2 Mb)</h6>
                       <input type="file" name="image" id="image">
                     </div>
                     <hr>

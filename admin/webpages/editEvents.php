@@ -24,7 +24,7 @@ include '../connection.php';
 <body>
   <div class="wrapper">
     <?php
-    include 'navbar.php';
+    include '../includes/navbar.php';
     ?>
 
     <div class="main_content">
@@ -83,7 +83,7 @@ include '../connection.php';
                 <td>
                   <!-- EDIT event button to go to page-->
                   <form action="../editwebpages/editSpecEvent.php" method="POST">
-                    <input type="hidden" name="edit_eventid" value="<?php echo $row['eventID']; ?>">
+                    <input type="hidden" name="edit_eventID" value="<?php echo $row['eventID']; ?>">
                     <button type="submit" name="edit_event" class="btn btn-info">EDIT</button>
                   </form>
                 </td>

@@ -51,42 +51,38 @@ include '../connection.php';
       <!-- php to grab user data -->
       <?php
       
-      if (isset($_POST['edit_event'])) {
-        $id = $_POST['edit_eventid'];
-        $query = "SELECT * FROM events WHERE eventID='$id' ";
+      if (isset($_POST['edit_contact'])) {
+        $id = $_POST['edit_contactID'];
+        $query = "SELECT * FROM contacts WHERE contactID='$id' ";
         $query_run = mysqli_query($conn, $query);
 
         foreach ($query_run as $row) {
       ?>
-          <!-- Edit Event -->
-          <form class="user" name="form-editEvent" action="../forms/eventform.php" method="POST">
+          <!-- Edit Contact -->
+          <form class="user" name="form-editContact" action="../forms/contactform.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-              <input type="hidden" name="edit_eventid" value="<?php echo $row['eventID'] ?>">
+              <input type="hidden" name="edit_contactID" value="<?php echo $row['contactID'] ?>">
             </div>
             <div class="form-group">
-              <h6> Title </h6>
-              <input type="text" name="edit_title" value="<?php echo $row['title'] ?>" id="title">
+              <h6> Contact Name</h6>
+              <input type="text" name="edit_name" value="<?php echo $row['name'] ?>" id="name">
             </div>
             <div class="form-group">
-              <h6> Event Date </h6>
-              <input type="date" name="edit_date" value="<?php echo $row['date'] ?>" id="date">
+              <h6> Email </h6>
+              <input type="email" name="edit_email" value="<?php echo $row['email'] ?>" id="email">
             </div>
             <div class="form-group">
-              <h6> Event Time </h6>
-              <input type="time" name="edit_time" value="<?php echo $row['time'] ?>" id="time">
+              <h6> Position </h6>
+              <input type="position" name="edit_position" value="<?php echo $row['position'] ?>" id="position">
             </div>
-            <div class="form-group">
-              <h6> Event Location</h6>
-              <input type="text" name="edit_location" value="<?php echo $row['location'] ?>" id="location">
-            </div>
-            <div class="form-group">
-              <h6> Event Description</h6>
-              <textarea name="edit_description" id="description" rows="8" cols="50"><?php echo $row['description'] ?></textarea>
+            <div>
+              <h6> Contact photo </h6>
+              <h6><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image'] ).'" height="60" width="75" class="img-thumbnail" />' ?></h6>
             </div>
             
             <div class="modal-footer">
-              <a class="btn btn-secondary" href="../webpages/editEvents.php">Return to Events</a>
-              <button type="submit" name="update_event" class="btn btn-primary">Update</button>
+              <a class="btn btn-secondary" href="../webpages/editContact.php">Return to Contacts</a>
+              <button type="submit" name="update_contact" class="btn btn-primary">Update</button>
             </div>
           </form>
       <?php

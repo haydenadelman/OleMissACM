@@ -28,7 +28,7 @@ if (isset($_POST['addEvent'])) {
 }
 
 if (isset($_POST['update_event'])) {
-  $id = $_POST['edit_eventid'];
+  $id = $_POST['edit_eventID'];
   $title = $_POST['edit_title'];
   $date = $_POST['edit_date'];
   $time = $_POST['edit_time'];
@@ -37,7 +37,7 @@ if (isset($_POST['update_event'])) {
 
   $isValid = true;
 
-  // Update records
+  // Update event
   if ($isValid) {
     $query = "UPDATE events SET title='$title', date='$date', time='$time', location='$location', description='$description' WHERE eventid='$id' ";
     $query_run = mysqli_query($conn, $query);
