@@ -7,8 +7,8 @@ include 'admin/connection.php';
 <body>
 <h1> Events</h1>
 
-<div class="card">
-  <div class="card-body">
+<div class="event">
+  <div class="card-event">
     <?php 
       $query = "SELECT * FROM events";
       $query_run = mysqli_query($conn, $query);

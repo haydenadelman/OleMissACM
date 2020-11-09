@@ -187,5 +187,30 @@ h2.title{
 
 }
 
+.contact {
+  background-color: #ff0202;
+  padding: 20px;
+  
+  align-items: center;
+  
+}
+.card-contact {
+  
+}
+.contact-text {
+  
+}
+
+h2 {
+  text-align: center;
+}
+
+.contact h6 {
+  text-align: left;
+  font-size: 20px;
+ 
+}
+
+
 
 
