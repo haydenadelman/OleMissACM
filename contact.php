@@ -6,10 +6,9 @@ include 'admin/connection.php';
 ?>
 
 <body>
-  <h2 class="title"> Contact Us</h2>
-
-  <div class="contact">
+  <section class="contact">
     <div class="card-contact">
+      <h1>Meet the Team</h1>
       <?php
       $query = "SELECT * FROM contacts";
       $query_run = mysqli_query($conn, $query);
@@ -19,11 +18,11 @@ include 'admin/connection.php';
       ?>
 
           <h5 class="card-title"></h5>
-          <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" height="220" width="170" class="img-thumbnail" />' ?>;
+          <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" height="220" width="170"/>' ?>;
           <div class="contact-text">
-            <h6> Date: <?php echo $row['name']; ?> </h6>
-            <h6> Time: <?php echo $row['email']; ?> </h6>
-            <h6> Location: <?php echo $row['position']; ?> </h6>
+            <h6><?php echo $row['name']; ?> </h6>
+            <h6> Email: <?php echo $row['email']; ?> </h6>
+            <h6> Position: <?php echo $row['position']; ?> </h6>
           </div>
       <?php
 
@@ -33,15 +32,18 @@ include 'admin/connection.php';
       }
 
       ?>
-    </div>
-  </div>
 
-  <h2> </h2>
+    </div>
+  </section>
+
+  <h2 class="title"> Contact Us</h2>
+
+  
 
 </body>
 
 <?php
-include 'includes/scripts.php';
+
 ?>
 
 </html>

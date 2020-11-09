@@ -15,7 +15,7 @@
         <li><a href="events.php">Events</a></li>
         <li><a href="gallery.php">Gallery</a></li>
         <li><a href="contact.php">Contact Us</a></li>
-        <li><a href="admin/login.php">Admin Login</a></li>
+        <li><a href="admin/login.php">Login</a></li>
       </ul>
     </div>
   </nav>
