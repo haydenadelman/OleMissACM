@@ -25,7 +25,7 @@ include 'admin/connection.php';
     ?>
     <!-- Loop to get gallery images from database-->
     <div class="gallery_item">
-      <img src="<?php echo $imageURL; ?>" class="format" height="200" width="250" alt="Gallery_image">
+      <img src="<?php echo $imageURL; ?>" class="format" height="275" width="325" alt="Gallery_image">
       <h3><?php echo $row['description']; ?></h3>
     </div>
     <?php

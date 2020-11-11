@@ -3,17 +3,21 @@ session_start();
 include 'connection.php';
 
 $username=$_POST['username'];
-$password=$_POST['password'];
 $op=$_GET['op'];
+$password = hash('sha256', $_POST['password']);
 
 if($op=="in"){
     
-    $sql=mysqli_query($conn, "select * from users where username='".$_POST['username']."' and password='".$_POST['password']."' ");
+    $sql=mysqli_query($conn, "select * from users where username='".$username."' and password='".$password."' ");
 
     if(mysqli_num_rows($sql)==1) {
         $query = mysqli_fetch_array($sql);
+
+        $hashpass= hash('sha256', $_SESSION['password']);
+        $hashquerypass= hash('sha256',$query['password']);
+
         $_SESSION['username']=$query['username'];
-        $_SESSION['password']=$query['password'];
+        $hashpass=$hashquerypass;
         $_SESSION['role']=$query['role'];
 
         if($query['role']=="admin"){

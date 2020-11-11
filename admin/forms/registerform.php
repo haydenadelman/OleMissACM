@@ -12,6 +12,7 @@ if (isset($_POST['register'])) {
   $password = $_POST['password'];
   $repassword = $_POST['repassword'];
   $role = $_POST['role'];
+  $hashed = hash('sha256', $password);
 
   $isValid = true;
 
@@ -45,7 +46,7 @@ if (isset($_POST['register'])) {
   if ($isValid) {
     $insertSQL = "INSERT INTO users(username,password,role) values(?,?,?)";
     $stmt = $conn->prepare($insertSQL);
-    $stmt->bind_param("sss", $username, $password, $role);
+    $stmt->bind_param("sss", $username, $hashed, $role);
     $stmt->execute();
     $stmt->close();
 

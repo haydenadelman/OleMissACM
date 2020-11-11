@@ -14,10 +14,11 @@ if(isset($_POST['update_user'])) {
   $password= $_POST['edit_password'];
   $repassword= $_POST['edit_repassword'];
   $role= $_POST['edit_role'];
+  $hashed= hash('sha256', $_POST['edit_password']);
   
   $isValid = true;
 
-  $query= "UPDATE users SET username='$username', password='$password', role='$role' WHERE id='$id' ";
+  $query= "UPDATE users SET username='$username', password='$hashed', role='$role' WHERE id='$id' ";
   $query_run= mysqli_query($conn, $query);
 
    // Check fields are empty or not
@@ -34,7 +35,7 @@ if(isset($_POST['update_user'])) {
 
    // Update records
    if($isValid){
-    $query= "UPDATE users SET username='$username', password='$password', role='$role' WHERE id='$id' ";
+    $query= "UPDATE users SET username='$username', password='$hashed', role='$role' WHERE id='$id' ";
     $query_run = mysqli_query($conn, $query);
 
      header("Location:../users.php?success=Account successfully updated!");
@@ -50,4 +51,3 @@ if(isset($_POST['delete_user'])) {
 }
 
 ?>
-
