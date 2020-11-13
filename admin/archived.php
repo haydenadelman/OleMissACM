@@ -29,7 +29,7 @@ include 'connection.php';
     ?>
 
     <div class="main_content">
-      <div class="header">Inbox
+      <div class="header">Archived Messages
         <div class="logout">
           <a href="logout.php">
             Logout
@@ -37,8 +37,8 @@ include 'connection.php';
         </div>
       </div>
       <div class="users">
-        <a class="btn btn-warning" href="archived.php">
-          ARCHIVED
+        <a class="btn btn-primary" href="pending.php">
+          PENDING
         </a>
       </div>
       <?php if (isset($_REQUEST['error'])) { ?>
@@ -55,7 +55,7 @@ include 'connection.php';
       <?php } ?>
       <!-- User account table-->
       <?php
-      $query = "SELECT * FROM messages WHERE type='new' ORDER BY messageID DESC ";
+      $query = "SELECT * FROM messages WHERE type='archived' ORDER BY messageID DESC ";
       $query_run = mysqli_query($conn, $query);
 
       ?>
@@ -79,8 +79,14 @@ include 'connection.php';
                 <td><?php echo $row['message']; ?></td>
                 <td>
                   <form action="forms/messageform.php" method="POST">
-                    <input type="hidden" name="archive_id" value="<?php echo $row['messageID']; ?>">
-                    <button type="submit" name="archive_msg" class="btn btn-info">Archive</button>
+                    <input type="hidden" name="return_id" value="<?php echo $row['messageID']; ?>">
+                    <button type="submit" name="return_msg" class="btn btn-warning">Inbox</button>
+                  </form>
+                </td>
+                <td>
+                  <form action="forms/messageform.php" method="POST">
+                    <input type="hidden" name="delete_id" value="<?php echo $row['messageID']; ?>">
+                    <button type="submit" name="delete_msg" class="btn btn-danger">DELETE</button>
                   </form>
                 </td>
               </tr>

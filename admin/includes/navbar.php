@@ -28,6 +28,14 @@
       <a href="/OleMissACM/admin/pending.php">
         <span><i class="fa fa-envelope"></i></span>
         <span>Pending</span>
+        <span>
+        <?php
+        $query = "SELECT messageID FROM messages WHERE type='new' ORDER BY messageID";
+        $query_run = mysqli_query($conn, $query);
+        $row = mysqli_num_rows($query_run);
+        echo '<h6>(' . $row . ')</h6>';
+        ?>
+        <span>
       </a>
     </li>
   </ul>

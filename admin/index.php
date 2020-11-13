@@ -7,7 +7,7 @@ if(!isset($_SESSION['username'])){
 elseif($_SESSION['role']!="user"){
   header("Location:admin.php");
 }
-
+include 'connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +37,23 @@ elseif($_SESSION['role']!="user"){
         </div>
       </div>
     </div>
+    <!-- Members Card-->
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Club Member Count</h5>
+          <p class="card-text">
+            <?php
+            $query = "SELECT memberID FROM members ORDER BY memberID";
+            $query_run = mysqli_query($conn, $query);
+
+            $row = mysqli_num_rows($query_run);
+
+            echo '<h4>'.$row.'</h4>';
+            ?>
+          </p>
+          <a href="members.php" class="card-link">Go to members</a>
+        </div>
+      </div>
   </div>
 </body>
 

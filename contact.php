@@ -6,6 +6,12 @@ include 'admin/connection.php';
 ?>
 
 <body>
+  <?php if (isset($_REQUEST['success'])) { ?>
+    <!-- Success Alerts-->
+    <div class="text-center">
+      <span class="alert alert-success"><?php echo $_REQUEST['success']; ?></span>
+    </div>
+  <?php } ?>
   <section class="contact">
     <h1>Meet the Team</h1>
     <div class="contact-container">
@@ -54,7 +60,7 @@ include 'admin/connection.php';
           <input type="email" name="email" id="email">
         </div>
         <div class="form-group">
-        <label for="message">Message:</label>
+          <label for="message">Message:</label>
           <div class="form-group">
             <textarea name="message" id="message" rows="6" cols="40" placeholder="Enter message"></textarea>
           </div>
