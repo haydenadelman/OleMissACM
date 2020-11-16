@@ -3,7 +3,7 @@
   <ul>
     <li>
       <a href="/OleMissACM/admin/index.php">
-        <span><i class="fa fa-user"></i></span>
+        <span><i class="fa fa-home"></i></span>
         <span>Dashboard</span>
       </a>
     </li>

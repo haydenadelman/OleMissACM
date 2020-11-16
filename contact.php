@@ -12,10 +12,14 @@ include 'admin/connection.php';
       <span class="alert alert-success"><?php echo $_REQUEST['success']; ?></span>
     </div>
   <?php } ?>
-  <section class="contact">
-    <h1>Meet the Team</h1>
-    <div class="contact-container">
-      <div class="card-contact">
+
+  <!-- Meet the Team-->
+  <section class="our-team padding-lg">
+    <div class="container">
+      <div class="row heading heading-icon">
+        <h2>Meet The Team</h2>
+      </div>
+      <ul class="row">
         <?php
         $query = "SELECT * FROM contacts";
         $query_run = mysqli_query($conn, $query);
@@ -23,14 +27,17 @@ include 'admin/connection.php';
         if (mysqli_num_rows($query_run) > 0) {
           foreach ($query_run as $row) {
         ?>
+            <li class="col-12 col-md-6 col-lg-3">
+              <div class="cnt-block equal-height" style="height: 420px;">
+                <?php echo '<figure><img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"class="img"></figure>' ?>
+                <div class="our-team-text">
+                  <h3><?php echo $row['name']; ?> </h3>
+                  <h6> Email: <?php echo $row['email']; ?> </h6>
+                  <h6> Position: <?php echo $row['position']; ?> </h6>
+                </div>
+              </div>
+            </li>
 
-            <h5 class="card-title"></h5>
-            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" height="220" width="170"/>' ?>
-            <div class="contact-text">
-              <h6><?php echo $row['name']; ?> </h6>
-              <h6> Email: <?php echo $row['email']; ?> </h6>
-              <h6> Position: <?php echo $row['position']; ?> </h6>
-            </div>
         <?php
 
           }
@@ -39,8 +46,7 @@ include 'admin/connection.php';
         }
 
         ?>
-      </div>
-
+      </ul>
     </div>
   </section>
 
@@ -62,7 +68,7 @@ include 'admin/connection.php';
         <div class="form-group">
           <label for="message">Message:</label>
           <div class="form-group">
-            <textarea name="message" id="message" rows="6" cols="40" placeholder="Enter message"></textarea>
+            <textarea name="message" id="message" rows="3" cols="20" placeholder="Enter message"></textarea>
           </div>
         </div>
         <div class="modal-footer">

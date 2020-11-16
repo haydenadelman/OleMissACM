@@ -7,7 +7,7 @@ include 'admin/connection.php';
 
 <body>
   <div class="event-title">
-    <h1> Events</h1>
+    <h1>Club Events</h1>
   </div>
   <div class="event">
 
@@ -24,7 +24,9 @@ include 'admin/connection.php';
           <h6> Time: <?php echo $row['time']; ?> </h6>
           <h6> Location: <?php echo $row['location']; ?> </h6>
           <p class="card-task"> <?php echo $row['description']; ?> </p>
-          <a href="#" class="btn btn-primary"> Go somewhere </a>
+          <div class="event-btn">
+            <a href="#" class="btn btn-light"> Register For Event </a>
+          </div>
         </div>
     <?php
       }

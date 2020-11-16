@@ -136,7 +136,7 @@ include '../connection.php';
                     <div class="form-group">
                       <textarea name ="description" id="description" rows="6" cols="40" placeholder="Describe event"></textarea>
                     </div>
-                    <hr>
+                   
                     <!-- Image input (not implemented)
                     <div class="form-group">
                       <h6>Add event image?</h6>
