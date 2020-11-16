@@ -17,7 +17,7 @@ include 'includes/head.php';
 
       </div>
     </div>
-    <div class="content-area">
+    <div class="content-area-about">
       <div class="wrapper">
         <h2 class="title">About OleMissACM</h2>
         <p>

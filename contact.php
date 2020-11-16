@@ -52,11 +52,11 @@ include 'admin/connection.php';
     <div class="contact-form">
       <form class="contact-us-form" name="form-contactUs" action="admin/forms/messageform.php" method="POST">
         <div class="form-group">
-          <label for="name">Name:</label>
+          <label for="name">Your Name:</label>
           <input type="text" name="name" id="name">
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email">Your Email:</label>
           <input type="email" name="email" id="email">
         </div>
         <div class="form-group">

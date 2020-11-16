@@ -62,7 +62,7 @@ include '../connection.php';
             <th>Time</th>
             <th>Location</th>
             <th>Description</th>
-            <th>Event Image</th>
+            <!--<th>Event Image</th>-->
             <th>EDIT</th>
             <th>DELETE</th>
           </tr>
@@ -79,7 +79,7 @@ include '../connection.php';
                 <td><?php echo $row['time']; ?></td>
                 <td><?php echo $row['location']; ?></td>
                 <td><?php echo $row['description']; ?></td>
-                <td><?php echo $row['eventImage']; ?></td>
+                <!--<td><?php echo $row['eventImage']; ?></td>-->
                 <td>
                   <!-- EDIT event button to go to page-->
                   <form action="../editwebpages/editSpecEvent.php" method="POST">
