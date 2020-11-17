@@ -24,7 +24,7 @@ include '../connection.php';
 <body>
   <div class="wrapper">
     <?php
-    include '../includes/navbar.php';
+    include 'navbar.php';
     ?>
 
     <div class="main_content">

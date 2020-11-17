@@ -24,9 +24,6 @@ include 'admin/connection.php';
           <h6> Time: <?php echo $row['time']; ?> </h6>
           <h6> Location: <?php echo $row['location']; ?> </h6>
           <p class="card-task"> <?php echo $row['description']; ?> </p>
-          <div class="event-btn">
-            <a href="#" class="btn btn-light"> Register For Event </a>
-          </div>
         </div>
     <?php
       }

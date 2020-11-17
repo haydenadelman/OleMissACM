@@ -40,7 +40,7 @@ include 'connection.php';
       <!-- Members Card-->
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">Club Member Count</h5>
+          <h5 class="card-title">Club Member Count:</h5>
           <p class="card-text">
             <?php
             $query = "SELECT memberID FROM members ORDER BY memberID";
@@ -51,13 +51,42 @@ include 'connection.php';
             echo '<h4>'.$row.'</h4>';
             ?>
           </p>
-          <a href="members.php" class="card-link">Go to members</a>
+          <a href="members.php" class="btn btn-info">Go to members</a>
         </div>
       </div>
-      <div class="users">
-        <a class="btn btn-primary" href="users.php">
-          View/Edit users
-        </a>
+      <!-- Funds Card-->
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Total Dues Received:</h5>
+          <p class="card-text">
+            <?php
+            $query = "SELECT SUM(dues) FROM members";
+            $sum = mysqli_query($conn, $query);
+            $row= mysqli_fetch_array($sum);
+
+            echo '<h4>$'.$row['SUM(dues)'].'</h4>';
+            ?>
+          </p>
+          
+        </div>
+      </div>
+
+      <!-- Users Card-->
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Admin Account Total:</h5>
+          <p class="card-text">
+            <?php
+            $query = "SELECT ID FROM users ORDER BY ID";
+            $query_run = mysqli_query($conn, $query);
+
+            $row = mysqli_num_rows($query_run);
+
+            echo '<h4>'.$row.'</h4>';
+            ?>
+          </p>
+          <a href="users.php" class="btn btn-primary">View/Edit users</a>
+        </div>
       </div>
     </div>
   </div>

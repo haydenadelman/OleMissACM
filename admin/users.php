@@ -19,7 +19,7 @@ include 'connection.php';
   <meta charset="utf-8">
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-  <script src="js/adminmain.js"></script>
+  <script src="js/main.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
 </head>
@@ -83,7 +83,7 @@ include 'connection.php';
                   </form>
                 </td>
                 <td>
-                  <form action="forms/userform.php" method="POST">
+                  <form onsubmit="return confirm('Are you sure you want to delete?');" action="forms/userform.php" method="POST">
                     <input type="hidden" name="delete_id" value="<?php echo $row['ID']; ?>">
                     <button type="submit" name="delete_user" class="btn btn-danger">DELETE</button>
                   </form>

@@ -6,13 +6,6 @@ include 'admin/connection.php';
 ?>
 
 <body>
-  <?php if (isset($_REQUEST['success'])) { ?>
-    <!-- Success Alerts-->
-    <div class="text-center">
-      <span class="alert alert-success"><?php echo $_REQUEST['success']; ?></span>
-    </div>
-  <?php } ?>
-
   <!-- Meet the Team-->
   <section class="our-team padding-lg">
     <div class="container">
@@ -32,7 +25,7 @@ include 'admin/connection.php';
                 <?php echo '<figure><img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"class="img"></figure>' ?>
                 <div class="our-team-text">
                   <h3><?php echo $row['name']; ?> </h3>
-                  <h6> Email: <?php echo $row['email']; ?> </h6>
+                  <h6><?php echo $row['email']; ?> </h6>
                   <h6> Position: <?php echo $row['position']; ?> </h6>
                 </div>
               </div>
@@ -56,7 +49,7 @@ include 'admin/connection.php';
       Send us a message!</h4>
 
     <div class="contact-form">
-      <form class="contact-us-form" name="form-contactUs" action="admin/forms/messageform.php" method="POST">
+      <form onsubmit="return confirm('Send Message? Thank you for your submission!');" class="contact-us-form" name="form-contactUs" action="admin/forms/messageform.php" method="POST">
         <div class="form-group">
           <label for="name">Your Name:</label>
           <input type="text" name="name" id="name">

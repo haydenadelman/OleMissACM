@@ -84,7 +84,7 @@ include 'connection.php';
                   </form>
                 </td>
                 <td>
-                  <form action="forms/messageform.php" method="POST">
+                  <form onsubmit="return confirm('Are you sure you want to delete?');" action="forms/messageform.php" method="POST">
                     <input type="hidden" name="delete_id" value="<?php echo $row['messageID']; ?>">
                     <button type="submit" name="delete_msg" class="btn btn-danger">DELETE</button>
                   </form>

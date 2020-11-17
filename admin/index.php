@@ -1,10 +1,9 @@
-<?php 
+<?php
 
 session_start();
-if(!isset($_SESSION['username'])){
+if (!isset($_SESSION['username'])) {
   header("Location:login.php");
-}
-elseif($_SESSION['role']!="user"){
+} elseif ($_SESSION['role'] != "user") {
   header("Location:admin.php");
 }
 include 'connection.php';
@@ -12,6 +11,7 @@ include 'connection.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Officer Dashboard</title>
   <meta charset="utf-8">
@@ -32,13 +32,12 @@ include 'connection.php';
       <div class="header">Welcome to Officer Dashboard!!
         <div class="logout">
           <a href="logout.php">
-          Logout
+            Logout
           </a>
         </div>
       </div>
-    </div>
-    <!-- Members Card-->
-    <div class="card" style="width: 18rem;">
+      <!-- Members Card-->
+      <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Club Member Count</h5>
           <p class="card-text">
@@ -48,12 +47,29 @@ include 'connection.php';
 
             $row = mysqli_num_rows($query_run);
 
-            echo '<h4>'.$row.'</h4>';
+            echo '<h4>' . $row . '</h4>';
             ?>
           </p>
           <a href="members.php" class="card-link">Go to members</a>
         </div>
       </div>
+      <!-- Funds Card-->
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Total Dues Received:</h5>
+          <p class="card-text">
+            <?php
+            $query = "SELECT SUM(dues) FROM members";
+            $sum = mysqli_query($conn, $query);
+            $row = mysqli_fetch_array($sum);
+
+            echo '<h4>$' . $row['SUM(dues)'] . '</h4>';
+            ?>
+          </p>
+
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

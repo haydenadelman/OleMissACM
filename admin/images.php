@@ -76,7 +76,7 @@ include 'connection.php';
                 <td><?php echo $row['imgName']; ?></td>
                 <td><?php echo $row['description']; ?></td>
                 <td>
-                  <form action="forms/imageform.php" method="POST">
+                  <form onsubmit="return confirm('Are you sure you want to delete?');" action="forms/imageform.php" method="POST">
                     <input type="hidden" name="delete_id" value="<?php echo $row['imgName']; ?>">
                     <button type="submit" name="delete_image" class="btn btn-danger">DELETE</button>
                   </form>
@@ -94,7 +94,7 @@ include 'connection.php';
       <!-- Add Image Modal -->
       <div class="addImagemodal">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addImageModal">
-          Add
+          Add Image
         </button>
         <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
           <div class="modal-dialog">

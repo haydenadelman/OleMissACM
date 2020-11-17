@@ -25,7 +25,7 @@ include '../connection.php';
 <body>
   <div class="wrapper">
     <?php
-    include '../includes/navbar.php';
+    include 'navbar.php';
     ?>
 
     <div class="main_content">
@@ -85,7 +85,7 @@ include '../connection.php';
                   </form>
                 </td>
                 <td>
-                  <form action="../forms/contactform.php" method="POST">
+                  <form onsubmit="return confirm('Are you sure you want to delete?');" action="../forms/contactform.php" method="POST">
                     <input type="hidden" name="delete_id" value="<?php echo $row['contactID']; ?>">
                     <button type="submit" name="delete_contact" class="btn btn-danger">DELETE</button>
                   </form>

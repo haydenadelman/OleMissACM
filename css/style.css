@@ -321,12 +321,12 @@ ul {
 
 .contact-form {
   background-color: #5d5c61;
-  width: 45%;
-  margin-left: 27.5%;
+  width: 100%;
   margin-right: 27.5%;
   margin-bottom: 5%;
   padding: 50px;
   min-width: 400px;
+  
 
 }
 .contact-us label {
@@ -372,7 +372,7 @@ ul {
   margin: 0;
   margin-bottom: 5%;
   padding: 50px;
-  padding-bottom: 20px;
+  
   padding-top: 24px;
   background-color: #5d5c61;
 }
@@ -392,7 +392,7 @@ ul {
 }
 
 .card-event p {
-  color: #fff;
+  color: #c55959;
   font-size: 24px;
   margin: 0;
   padding: 10px;
