@@ -35,7 +35,7 @@ if (isset($_POST['update_contact'])) {
     $query = "UPDATE contacts SET name='$name', email='$email', position='$position' WHERE contactID='$id' ";
     $query_run = mysqli_query($conn, $query);
 
-    header("Location:../webpages/editContact.php?success=Account successfully updated!");
+    header("Location:../webpages/editContact.php?success=Contact successfully updated!");
   }
 }
 
@@ -44,5 +44,5 @@ if (isset($_POST['delete_contact'])) {
   $query = "DELETE FROM contacts WHERE contactID='$id' ";
   $query_run = mysqli_query($conn, $query);
 
-  header("Location:../webpages/editContact.php?success=Account successfully deleted!");
+  header("Location:../webpages/editContact.php?success=Contact successfully deleted!");
 }

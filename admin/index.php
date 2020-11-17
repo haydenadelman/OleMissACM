@@ -50,7 +50,7 @@ include 'connection.php';
             echo '<h4>' . $row . '</h4>';
             ?>
           </p>
-          <a href="members.php" class="card-link">Go to members</a>
+          <a href="members.php" class="btn btn-info">Go to members</a>
         </div>
       </div>
       <!-- Funds Card-->
